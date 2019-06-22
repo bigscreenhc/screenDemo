@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+  var myChart = echarts.init(document.getElementById('main'));
+  var uploadedDataURL = "http://hzdjfile.madfrog.cn/group1/default/20190623/03/36/2/luohe.json";
+  myChart.showLoading();
+  $.getJSON(uploadedDataURL, function (geoJson) {
+    echarts.registerMap('luohe', geoJson);
+    myChart.hideLoading();
+
+
+    option = {
+      backgroundColor: '#fff',
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: '#09bdb1',
+        borderColor: '#FFFFCC',
+        showDelay: 0,
+        hideDelay: 0,
+        enterable: true,
+        transitionDuration: 0,
+        extraCssText: 'z-index:100',
+        formatter: function (params, ticket, callback) {
+          //根据业务自己拓展要显示的内容
+          var res = "";
+          var name = params.name;
+          var value = params.value;
+          res = name;
+          return res;
+        }
+      },
+      geo: {
+        map: 'luohe',
+        label: {
+          emphasis: {
+            show: false
+          }
+        },
+        roam: false,//禁止其放大缩小
+        itemStyle: {
+          normal: {
+            areaColor: '#4c60ff',
+            borderColor: '#FFFFCC'
+          },
+          emphasis: {
+            areaColor: '#293fff'
+          }
+        },
+      }
+    };
+    myChart.setOption(option);
+  });
+</script>
+</body>
+</html>

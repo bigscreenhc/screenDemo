@@ -423,7 +423,7 @@ option = {
               }
             }
     },
-  
+
     geo: {
         map: 'china',
         label: {
@@ -435,7 +435,7 @@ option = {
         itemStyle: {
             normal: {
                 areaColor: '#4c60ff',
-                borderColor: '#002097'
+                borderColor: '#FFFFCC'
             },
             emphasis: {
                 areaColor: '#293fff'
@@ -467,7 +467,7 @@ option = {
                 }
             }
         }
-		
+
 		/**
 		,
         {
@@ -504,7 +504,7 @@ option = {
 		**/
     ]
 };
-		
+
         myChart.setOption(option);
         window.addEventListener("resize",function(){
             myChart.resize();
